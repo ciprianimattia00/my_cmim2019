@@ -22,13 +22,13 @@ for j = 1 : N  % loop for cecking all the epsilon value and obtaining a value of
 
       if strcmp('trapezoidal', method) % if for comparing strings
     
-          integral_1 = trapezoidal(f, a, b, n(j));
+          integral_1 = trapezoidal(f, a, b, n(j)); % compute the integral with trapezoidal method
     
           integral_2 = trapezoidal(f, a, b, 2*n(j));
     
       elseif strcmp('midpoint', method) % elseif for comparing strings
       
-          integral_1 = midpoint_vec(f, a, b, n(j));
+          integral_1 = midpoint_vec(f, a, b, n(j)); % compute the integral with vectorized midpoint method
     
           integral_2 = midpoint_vec(f, a, b, 2*n(j));
         
@@ -47,7 +47,7 @@ for j = 1 : N  % loop for cecking all the epsilon value and obtaining a value of
         
           disp(x);
         
-          n_values(end + 1) = x; % save n(j) in an array
+          n_values(end + 1) = x; % save n(j) in the array n_values
         
           condition = true; % stop the loop 
 
