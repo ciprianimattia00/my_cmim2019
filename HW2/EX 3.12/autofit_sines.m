@@ -6,7 +6,7 @@ N = 100; % number of
 M = 100; % number of intervals for numerical integration
 filename = 'autofit sines with f(t)=exp(-(t-pi)) and N = 100'; 
 % two function, you can choose one of them commenting the other one 
-f = @(t) t./pi;  
+%f = @(t) t./pi;  
 f = @(t) exp(-(t-pi));
 
 bn_values = integrate_coefficient(f, N, M); 

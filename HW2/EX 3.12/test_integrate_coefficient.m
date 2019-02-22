@@ -1,6 +1,6 @@
 %% test integrate coefficient
 
-% settinf f = 1, compute integration function will work with bn = @(t)
+% setting f = 1, compute integration function will work with bn = @(t)
 % 1/pi.*(1*sin(i.*t)), computing the value of the integral of sin(nt) that
 % should be equal to zero if it is computed between -pi and pi.
 % the function needs to work with a for loop for computing all the values in the 
