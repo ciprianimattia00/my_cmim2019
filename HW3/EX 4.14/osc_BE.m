@@ -42,7 +42,8 @@ plot(t, u, 'b-', t, X_0*cos(omega0*t), 'r--');
 legend('Backwards Euler Method', 'Exact');
 title(sprintf('Displacements BE spp = %g, dt = %g, tk = %f', spp, dt, tk))
 xlabel('t');
+
 % print the plot obtained in two files
-print('tmp', '-dpdf'); 
+% print('tmp', '-dpdf'); 
 print('tmp', '-dpng');
 
