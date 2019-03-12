@@ -10,14 +10,17 @@ omega0 = 2;
 
 % Initial condition
 X_0 = 2;
-T0 = 2*pi/omega0; 
-dt = T0/20;
-tk = 3*T0;
+T0 = 2*pi/omega0;
+% the following 2 lines allows the user to decide the number of steps per
+% period in order to determine the dt. (the exercise ask for 20 and 2000)
+steps_per_period = input('steps per period = ');
+spp = steps_per_period;
+dt = T0/spp;
+tk = 3*T0; % 3 succesive periods in the plot
 
 N_t = floor(tk/dt); % floor is rounding the fraction in case it is not an integer
 t = linspace(0, N_t*dt, N_t+1);
-
-
+% definition of two zero vectors for position and velocity
 u = zeros(N_t+1, 1);
 v = zeros(N_t+1, 1);
 
@@ -37,5 +40,9 @@ end
 % plot numerical solution(Backward Euler Method) and exact solution
 plot(t, u, 'b-', t, X_0*cos(omega0*t), 'r--');
 legend('Backwards Euler Method', 'Exact');
-title(sprintf('Displacements BE dt %g, tk %f', dt, tk))
+title(sprintf('Displacements BE spp = %g, dt = %g, tk = %f', spp, dt, tk))
 xlabel('t');
+% print the plot obtained in two files
+print('tmp', '-dpdf'); 
+print('tmp', '-dpng');
+
