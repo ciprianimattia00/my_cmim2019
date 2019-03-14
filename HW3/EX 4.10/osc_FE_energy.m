@@ -39,12 +39,14 @@ xlabel('t');
 % calculate all the energies and plot all of them
 % call the osc_energy function for computing energy
 [E,Up,K] = osc_energy(u, v, omega0);
+
 % plot Potential and Kinetic Energy in the same plot
 figure
 plot(t,Up,'r-',t,K,'g-');
 xlabel('t');
 ylabel('Energy');
 legend('Potential Energy','Kinetic Energy');
+
 % plot Total Energy
 figure
 plot(t, E,'b-');
