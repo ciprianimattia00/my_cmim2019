@@ -4,8 +4,11 @@
 % a set of repeatedly halved time steps: dtk = 2^(-k)*dt, K = 1,2,3...;
 % plotting the last two solution.
 
+% the logistic function is a function used to described the growth of the
+% population
+
 % initial parameters and inputs for the ode_FE function
-M = 500;
+M = 500; % Maximum number for the population
 r = 0.1; 
 f = @(u, t) r*(1 - u/M)*u; 
 U_0 = 100; 
