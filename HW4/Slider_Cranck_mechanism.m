@@ -15,14 +15,16 @@ J =  @(x) [-b*sin(x(1)) , -1 ; -b*cos(x(1)) , 0];
 [x, iteration_counter] = NR_method(F, J, [pi/10; 0.1], 1e-4);
 
 % interval of time 
-N = 25; 
+N = 7; 
 
 % itializations of vectors for storing values of teta and distance
 teta_values = zeros(1,N/0.1+1);
 d_values = zeros(1,N/0.1+1);
+
 % itializations of vectors for storing values of teta-dot and d-dot
 angular_velocity = zeros(1,N/0.1+1);
 tang_velocity = zeros(1,N/0.1+1);
+
 % itializations of vectors for storing values of teta-dot-dot and d-dot-dot
 angular_acc = zeros(1,N/0.1+1);
 tang_acc = zeros(1,N/0.1+1);
@@ -53,14 +55,14 @@ for i = 1:N/0.1
     J2 = [-b*sin(teta_values(i)) , -1 ; -b*cos(teta_values(i)) , 0]; 
     ft = -[-a*w*sin(fi);a*w*cos(fi)];
     velocity = J2\ft;
-    % soring values for teta-dot and d-dot
+    % storing values for teta-dot and d-dot
     angular_velocity(i) = velocity(1);
     tang_velocity(i) = velocity(2);
     
     % computation of the acceleration
-    G = -[-a*w^2*cos(fi)-b*(angular_velocity(i))^2*cos(teta_values(i)); -a*w^2*sin(fi)+b*(angular_velocity(i))^2*sin(teta_values(i))];
+    G = [a*w^2*cos(fi)+b*(angular_velocity(i))^2*cos(teta_values(i)); +a*w^2*sin(fi)-b*(angular_velocity(i))^2*sin(teta_values(i))];
     acc = J2\G;
-    % soring values for teta-dot-dot and d-dot-dot
+    % storing values for teta-dot-dot and d-dot-dot
     angular_acc(i) = acc(1);
     tang_acc(i) = acc(2);
     
@@ -71,40 +73,40 @@ figure
 plot(t, teta_values);
 xlabel('t');
 ylabel('teta');
-title('Teta(t) in an intervals of seconds from 0 to 25');
+title(sprintf('Teta(t) in an intervals of seconds from 0 to %d', N));
 
 % plot d in function of time
 figure
 plot(t, d_values);
 xlabel('t');
 ylabel('d = position');
-title('d(t) in an intervals of seconds from 0 to 25');
+title(sprintf('d(t) in an intervals of seconds from 0 to %d', N));
 
 % plot the angular velocity in function of time
 figure
 plot(t,angular_velocity);
 xlabel('t');
 ylabel('angular velocity');
-title('Angular velocity in an intervals of seconds from 0 to 25');
+title(sprintf('Angular velocity in an intervals of seconds from 0 to %d', N));
 
 % plot the tangential velocity in function of time
 figure
 plot(t,tang_velocity);
 xlabel('t');
 ylabel('tangential velocity');
-title('tangential velocity in an intervals of seconds from 0 to 25');
+title(sprintf('tangential velocity in an intervals of seconds from 0 to %d', N));
 
 % plot the angular acceleration in function of time 
 figure
 plot(t,angular_acc);
 xlabel('t');
 ylabel('angular acc');
-title('Angular acceleration in an intervals of seconds from 0 to 25');
+title(sprintf('Angular acceleration in an intervals of seconds from 0 to %d', N));
 
 % plot the tangential acceleration
 figure
 plot(t,tang_acc);
 xlabel('t');
 ylabel('tangential acc');
-title('tangential acceleration in an intervals of seconds from 0 to 25');
+title(sprintf('tangential acceleration in an intervals of seconds from 0 to %d', N));
 
