@@ -15,7 +15,7 @@ J =  @(x) [-b*sin(x(1)) , -1 ; -b*cos(x(1)) , 0];
 [x, iteration_counter] = NR_method(F, J, [pi/10; 0.1], 1e-4);
 
 % interval of time 
-N = 7; 
+N = 15; 
 
 % itializations of vectors for storing values of teta and distance
 teta_values = zeros(1,N/0.1+1);
