@@ -70,8 +70,6 @@ for i = 1:N/0.1+1
     angular_acc(i) = acc(1);
     slider_acc(i) = acc(2);
     
-    
-    
 end
 
 % plot teta and d in function of time
