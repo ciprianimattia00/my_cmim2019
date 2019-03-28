@@ -5,6 +5,9 @@ b = 0.2; % [m]
 w = 1; % [rad/s]
 fi = pi/6; % [°]  % crank angle
 
+% interval of time 
+N = 20; 
+
 % function in function of teta angle and d = distance where x = [teta; d]
 F = @(x) [a*cos(fi) + b*cos(x(1))- x(2);a*sin(fi) - b*sin(x(1))];
 
@@ -13,9 +16,6 @@ J =  @(x) [-b*sin(x(1)) , -1 ; -b*cos(x(1)) , 0];
 
 % Newton Raphson's method for solving the non linear function
 [x, iteration_counter] = NR_method(F, J, [pi/10; 0.1], 1e-4);
-
-% interval of time 
-N = 20; 
 
 % itializations of vectors for storing values of teta and distance
 teta_values = zeros(1,N/0.1+1);
