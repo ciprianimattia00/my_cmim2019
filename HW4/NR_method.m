@@ -23,5 +23,4 @@ end
 if F_norm > eps
     iteration_counter = -1;
 end
-
 end
