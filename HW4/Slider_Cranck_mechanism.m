@@ -3,7 +3,7 @@
 a = 0.1; % [m]
 b = 0.2; % [m]
 w = 1; % [rad/s]
-fi = pi/6; % [°]
+fi = pi/6; % [°]  % crank angle
 
 % function in function of teta angle and d = distance where x = [teta; d]
 F = @(x) [a*cos(fi) + b*cos(x(1))- x(2);a*sin(fi) - b*sin(x(1))];
@@ -15,7 +15,7 @@ J =  @(x) [-b*sin(x(1)) , -1 ; -b*cos(x(1)) , 0];
 [x, iteration_counter] = NR_method(F, J, [pi/10; 0.1], 1e-4);
 
 % interval of time 
-N = 15; 
+N = 20; 
 
 % itializations of vectors for storing values of teta and distance
 teta_values = zeros(1,N/0.1+1);
@@ -29,9 +29,11 @@ tang_velocity = zeros(1,N/0.1+1);
 angular_acc = zeros(1,N/0.1+1);
 tang_acc = zeros(1,N/0.1+1);
 
+crank_angle = zeros(1,N/0.1+1);
+
 % in the following lines the loop is run in order to implement the
 % dipendance of fi angle with time
-for i = 1:N/0.1
+for i = 1:N/0.1+1
     
     % vector with values of time from 1 second to N seconds with intervals 
     % of 0.1 second
@@ -39,6 +41,7 @@ for i = 1:N/0.1
     
     % fi with dependance from time 
     fi = pi/6 +w*t(i);
+    crank_angle(i) = fi;
     
     % function and Jacobian of the fucntion
     F = @(x) [a*cos(fi) + b*cos(x(1))- x(2);a*sin(fi) - b*sin(x(1))];
@@ -65,6 +68,8 @@ for i = 1:N/0.1
     % storing values for teta-dot-dot and d-dot-dot
     angular_acc(i) = acc(1);
     tang_acc(i) = acc(2);
+    
+    
     
 end
 
@@ -109,4 +114,12 @@ plot(t,tang_acc);
 xlabel('t');
 ylabel('tangential acc');
 title(sprintf('tangential acceleration in an intervals of seconds from 0 to %d', N));
+
+% plot the tangential acceleration in function of the crank angle
+figure
+plot(crank_angle,tang_acc);
+xlabel('fi = crank angle');
+ylabel('tangential acc');
+title(sprintf('tangential acceleration in function of fi', N));
+axis([0.5236 20.5236 -0.15 0.1]);
 
