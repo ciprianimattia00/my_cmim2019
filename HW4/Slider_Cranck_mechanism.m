@@ -42,6 +42,8 @@ for i = 1:N/0.1+1
     
     % fi with dependance from time 
     fi = pi/6 +w*t(i);
+    % store all the value of fi in a vector that can be used to plot the
+    % results in function of the crank angle instead of time
     crank_angle(i) = fi;
     
     % function and Jacobian of the fucntion
@@ -121,5 +123,6 @@ title(sprintf('slider acceleration in an intervals of seconds from 0 to %d', N))
 % ylabel('slider acc');
 % title(sprintf('slider acceleration in function of fi', N));
 % axis([0.5236 20.5236 -0.2 0.2]);
+
 
 
